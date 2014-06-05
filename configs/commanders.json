@@ -5,6 +5,19 @@
         "description":  "Johnny five commander",
         "label":        "Johnny Five",
         "commands": {
+            "led" : {
+                "label" : "Test Led",
+                "description" : "",
+                "schema" : {
+                    "pin": {
+                         "type" : "integer",
+                         "options" : {
+                            "label" : "Pin",
+                            "default" : 11
+                         }
+                    }
+                }
+            },
             "pulse": {
                 "label": "Test Pulse",
                 "description": "Not Functional",
@@ -33,7 +46,7 @@
             },
             "motor" : {
                 "label" : "Test Motor",
-                "description" : "",
+                "description" : "Not Functional",
                 "schema" : {
                     "pin" : {
                         "type" : "integer",

@@ -7,6 +7,12 @@ define(['altair/facades/declare',
 
     return declare([_IsCommanderMixin], {
 
+        led: function(options) {
+            this.board = this.parent.board;
+            this._led = new five.Led(options);
+
+            this._led.pulse();
+        },
         pulse: function(options) {
 
             options.board = this.parent.board;
@@ -18,9 +24,9 @@ define(['altair/facades/declare',
         servo: function(options) {
             options.board = this.parent.board;
             this._servo = new five.Servo(options);
-//             this._servo.sweep();
             this._servo.center();
-            this._servo.to( 90 );
+            this._servo.to(90);
+            this._servo.sweep();
         },
         motor: function(options) {
             options.board = this.parent.board;
