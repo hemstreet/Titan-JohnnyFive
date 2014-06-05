@@ -1,0 +1,49 @@
+{
+    "j5": {
+
+        "path":         "commanders/Commander",
+        "description":  "Johnny five commander",
+        "label":        "Johnny Five",
+        "commands": {
+            "pulse": {
+                "label": "Test Pulse",
+                "description": "Not Functional",
+                "schema": {
+                    "pin": {
+                        "type": "integer",
+                        "options": {
+                            "label": "Pin",
+                            "default" : 7
+                        }
+                    }
+                }
+            },
+            "servo" : {
+                "label" : "Test Servo",
+                "description" : "",
+                "schema" : {
+                    "pin" : {
+                        "type" : "integer",
+                        "options" : {
+                            "label" : "Pin",
+                            "default" : 10
+                        }
+                    }
+                }
+            },
+            "motor" : {
+                "label" : "Test Motor",
+                "description" : "",
+                "schema" : {
+                    "pin" : {
+                        "type" : "integer",
+                        "options" : {
+                            "label" : "Pin",
+                            "default" : 3
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
