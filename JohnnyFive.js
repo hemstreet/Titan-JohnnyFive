@@ -1,19 +1,12 @@
 /**
  * Implementation of johnny-five into the altair world, This module is mostly for demonstration and lookup purposes.
- * Use the j5 commander to test the
+ * For more information check out johnny-five at https://github.com/rwaldron/johnny-five
  *
  * @author:     Jon Hemstreet
  * @license:    **Your license here**
  * @vendor:     titan
  * @module:     JohnnyFive
  * @nexus:      this.nexus("titan:JohnnyFive")
- *
- * What next?
- *
- * 1. Setting up listeners: altair.io/docs/listeners.md
- * 2. Using extensions: altair.io/docs/extensions.md
- * 3. Building a Commander: altair.io/core/vendors/altair/modules/commandcentral/README.md
- * 4. The Adapter Pattern:  altair.io/core/vendors/altair/modules/adapters/README.md
  *
  */
 
@@ -36,9 +29,6 @@ define(['altair/facades/declare', //take a look at terms.md
 
 
         /**
-         * Startup is called after every module is instantiated, but you still can only rely on module's existing that
-         * you have specified in your package.json as altairDependencies.
-         *
          * @param options
          * @returns {altair.Promise}
          */
@@ -47,10 +37,12 @@ define(['altair/facades/declare', //take a look at terms.md
             //use the options that were passed in, or the ones we have by default; avoid mutating options
             var _options = options || this.options;
 
+            // Disable repl or this will crash node :(
             this.board = new five.Board({
                 repl: false
             });
 
+            // Create a deferred so we can make sure that the board is fully initialized before we start our commander
             this.deferred = new this.Deferred;
 
             this.board.on("ready", function() {
