@@ -8,47 +8,69 @@ define(['altair/facades/declare',
 ], function (declare, _IsCommanderMixin, five) {
 
     return declare([_IsCommanderMixin], {
-        digitalReadPin:  function (options) {
-            this.board = this.parent.board;
-            console.log(options.pin);
-            this.pin = new five.Pin(options.pin);
+        digitalRead:  function (options) {
+            options.board = this.parent.board;
 
-            // set pin to INPUT mode
-            this.board.pinMode(options.pin, 0);
-
-            this.board.digitalRead(options.pin);
+            options.board.digitalRead(options.pin, function (value) {
+                console.log('inside');
+                console.log(value);
+            }.bind(this));
 
         },
-        digitalWritePin: function (options) {
-            this.board = this.parent.board;
+        digitalWrite: function (options) {
+            options.board = this.parent.board;
 
             // Set pin to OUTPUT mode
-            this.board.pinMode(options.pin, 1);
+            options.board.pinMode(options.pin, 1);
 
-            this.board.digitalWrite(options.pin, 1);
-
-        },
-        analogWritePin:  function (options) {
-            this.board = this.parent.board;
-
-            this.board.pinMode(options.pin, 1);
-
-            this.board.analogWrite(options.pin, 255)
+            options.board.digitalWrite(options.pin, 1);
 
         },
-        analogReadPin:  function (options) {
-            this.board = this.parent.board;
+        analogRead:   function (options) {
+            options.board = this.parent.board;
 
-            this.board.analogRead(options.pin, 255)
+//            this.pin = new five.Pin(options.pin);
+//
+////            this.pin.query(function(state) {
+////                console.log(state);
+////            }.bind(this));
+//
+//            this.board.analogRead(options.pin, function(value) {
+//                console.log(value);
+//            }.bind(this));
+
 
         },
-        led: function (options) {
-            this.board = this.parent.board;
+        analogWrite:  function (options) {
+            options.board = this.parent.board;
+
+            options.board.analogWrite(options.pin, 255);
+
+        },
+        led:          function (options) {
+            options.board = this.parent.board;
             this._led = new five.Led(options);
 
             this._led.pulse();
         },
-        pulse:           function (options) {
+        button:       function (options) {
+            options.board = this.parent.board;
+
+            this._button = new five.Button(options.pin);
+
+            this._button.on("down", function () {
+                console.log("down");
+            });
+
+            this._button.on("hold", function () {
+                console.log("hold");
+            });
+
+            this._button.on("up", function () {
+                console.log("up");
+            });
+        },
+        pulse:        function (options) {
 
             options.board = this.parent.board;
             this.ping = new five.Ping(options);
@@ -56,40 +78,98 @@ define(['altair/facades/declare',
                 console.log(this.ping.inches, median);
             }.bind(this));
         },
-        servo:           function (options) {
+        irDistance: function(options) {
+            options.board = this.parent.board;
+
+            this.distance = new five.IR.Distance(options);
+
+            this.distance.on("data", function() {
+                if (options.board) {
+                    console.log("inches: ", this.inches);
+                    console.log("cm: ", this.cm, this.raw);
+                } else {
+                    console.log("value: ", this.value);
+                }
+            });
+        },
+        joystick: function(options) {
+            options.board = this.parent.board;
+
+            this._joystick = new five.Joystick({
+
+                // Joystick pins are an array of pins
+                // Pin orders:
+                //   [ up, down, left, right ]
+                //   [ ud, lr ]
+
+                pins: [options.x, options.y],
+                freq: options.freq
+            });
+
+            this._joystick.on("axismove", function(err, timestamp) {
+
+                console.log( "input", this.axis );
+                console.log( "LR:", this.axis.x, this.normalized.x );
+                console.log( "UD:", this.axis.y, this.normalized.y );
+                console.log( "MAG:", this.magnitude );
+
+            });
+        },
+        servo:        function (options) {
             options.board = this.parent.board;
             this._servo = new five.Servo(options);
             this._servo.center();
             this._servo.to(90);
         },
-        motor:           function (options) {
-            options.board = this.parent.board;
-            this._motor = new five.Motor(options);
+        motor:        function (options) {
 
+            options.board = this.parent.board;
+
+            this._motor = new five.Motor(options);
+            // "start" events fire when the motor is started.
+            this._motor.on("start", function (err, timestamp) {
+                console.log("start", timestamp);
+
+                // Demonstrate motor stop in 2 seconds
+                options.board.wait(3000, function() {
+                    this._motor.stop();
+                }.bind(this));
+
+            }.bind(this));
+
+            // "stop" events fire when the motor is started.
+            this._motor.on("stop", function (err, timestamp) {
+                console.log("stop", timestamp);
+            });
+
+//            Motor API
+
+            // start()
+            // Start the motor. `isOn` property set to |true|
             this._motor.start();
 
         },
-        motion:          function (options) {
+        motion:       function (options) {
             options.board = this.parent.board;
 
-            this.sensor = new five.IR.Motion(options);
+            this._motion = new five.IR.Motion(options);
 
             // "calibrated" occurs once, at the beginning of a session,
-            this.sensor.on("calibrated", function (err, ts) {
+            this._motion.on("calibrated", function (err, ts) {
                 console.log("calibrated", ts);
-            }.bind(this));
+            });
 
             // "motionstart" events are fired when the "calibrated"
             // proximal area is disrupted, generally by some form of movement
-            this.sensor.on("motionstart", function (err, ts) {
+            this._motion.on("motionstart", function (err, ts) {
                 console.log("motionstart", ts);
-            }.bind(this));
+            });
 
             // "motionstart" events are fired following a "motionstart event
             // when no movement has occurred in X ms
-            this.sensor.on("motionend", function (err, ts) {
+            this._motion.on("motionend", function (err, ts) {
                 console.log("motionend", ts);
-            }.bind(this));
+            });
         }
     });
 });

@@ -42,9 +42,6 @@ define(['altair/facades/declare', //take a look at terms.md
             this.board.on("ready", function () {
                 if (this.deferred) {
                     this.deferred.resolve(this);
-
-                    // Due to IDE software crashes I have pin 13 strobe an led to ensure it is still connected
-                    (new five.Led(13)).strobe();
                 }
             }.bind(this));
 

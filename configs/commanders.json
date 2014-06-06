@@ -5,10 +5,10 @@
         "description": "Johnny five commander",
         "label":       "Johnny Five",
         "commands":    {
-            "digitalReadPin":  {
+            "digitalRead":  {
                 "label":       "Digital Read Pin",
                 "description": "Not Functional",
-                "aliases": ["dread"],
+                "aliases":     ["dread"],
                 "schema":      {
                     "pin": {
                         "type":    "integer",
@@ -19,9 +19,9 @@
                     }
                 }
             },
-            "digitalWritePin": {
+            "digitalWrite": {
                 "label":       "Digital Write Pin",
-                "aliases": ["dwrite"],
+                "aliases":     ["dwrite"],
                 "description": "",
                 "schema":      {
                     "pin": {
@@ -33,35 +33,35 @@
                     }
                 }
             },
-            "analogWritePin":  {
-                "label":       "Analog Write Pin",
-                "description": "Not Functional",
-                "aliases": ["awrite"],
-                "schema":      {
-                    "pin": {
-                        "type":    "string",
-                        "options": {
-                            "label":   "Pin",
-                            "default": "A0"
-                        }
-                    }
-                }
-            },
-            "analogReadPin":  {
+            "analogRead":   {
                 "label":       "Analog Read Pin",
                 "description": "Not Functional",
-                "aliases": ["aread"],
+                "aliases":     ["aread"],
                 "schema":      {
                     "pin": {
-                        "type":    "string",
+                        "type":    "integer",
                         "options": {
                             "label":   "Pin",
-                            "default": "A0"
+                            "default": 0
                         }
                     }
                 }
             },
-            "led":      {
+            "analogWrite":  {
+                "label":       "Analog Write Pin",
+                "description": "Not Functional",
+                "aliases":     ["awrite"],
+                "schema":      {
+                    "pin": {
+                        "type":    "integer",
+                        "options": {
+                            "label":   "Pin",
+                            "default": 0
+                        }
+                    }
+                }
+            },
+            "led":          {
                 "label":       "Test Led",
                 "description": "",
                 "schema":      {
@@ -74,7 +74,20 @@
                     }
                 }
             },
-            "pulse":    {
+            "button":       {
+                "label":       "Test Button",
+                "description": "",
+                "schema":      {
+                    "pin": {
+                        "type":    "integer",
+                        "options": {
+                            "label":   "Pin",
+                            "default": 11
+                        }
+                    }
+                }
+            },
+            "pulse":        {
                 "label":       "Test Pulse",
                 "description": "Not Functional",
                 "schema":      {
@@ -87,7 +100,54 @@
                     }
                 }
             },
-            "servo":    {
+            "irDistance":   {
+                "label":       "Test Distance",
+                "description": "",
+                "schema":      {
+                    "pin":  {
+                        "type":    "string",
+                        "options": {
+                            "label":   "Pin",
+                            "default": "A0"
+                        }
+                    },
+                    "freq": {
+                        "type":    "integer",
+                        "options": {
+                            "label":   "Frequency",
+                            "default": 500
+                        }
+                    }
+                }
+            },
+            "joystick":     {
+                "label":       "Test Joystick",
+                "description": "",
+                "schema":      {
+                    "x":    {
+                        "type":    "string",
+                        "options": {
+                            "label":   "X axis pin",
+                            "default": "A0"
+                        }
+                    },
+                    "y":    {
+                        "type":    "string",
+                        "options": {
+                            "label":   "Y axis pin",
+                            "default": "A1"
+                        }
+                    },
+                    "freq": {
+                        "type":    "integer",
+                        "options": {
+                            "label":   "Frequency",
+                            "default": 500
+                        }
+                    }
+                }
+            },
+            "servo":        {
                 "label":       "Test Servo",
                 "description": "",
                 "schema":      {
@@ -100,7 +160,7 @@
                     }
                 }
             },
-            "motor":    {
+            "motor":        {
                 "label":       "Test Motor",
                 "description": "Not Functional",
                 "schema":      {
@@ -108,20 +168,20 @@
                         "type":    "integer",
                         "options": {
                             "label":   "Pin",
-                            "default": 3
+                            "default": 5
                         }
                     }
                 }
             },
-            "motion":   {
+            "motion":       {
                 "label":       "Test IR Motion Sensor",
-                "description": "Not Functional",
+                "description": "",
                 "schema":      {
                     "pin": {
                         "type":    "integer",
                         "options": {
                             "label":   "Pin",
-                            "default": 5
+                            "default": 7
                         }
                     }
                 }
