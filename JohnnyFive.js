@@ -11,19 +11,13 @@
  */
 
 define(['altair/facades/declare', //take a look at terms.md
-        'altair/facades/hitch',
-        'altair/Lifecycle',
-        'altair/events/Emitter',
-        'altair/plugins/node!fs',
-        'altair/plugins/node!johnny-five',
-        'altair/modules/commandcentral/mixins/_HasCommandersMixin'
-], function (declare,
-             hitch,
-             Lifecycle,
-             Emitter,
-             fs,
-             five,
-             _HasCommandersMixin) {
+    'altair/facades/hitch',
+    'altair/Lifecycle',
+    'altair/events/Emitter',
+    'altair/plugins/node!fs',
+    'altair/plugins/node!johnny-five',
+    'altair/modules/commandcentral/mixins/_HasCommandersMixin'
+], function (declare, hitch, Lifecycle, Emitter, fs, five, _HasCommandersMixin) {
 
     return declare([Lifecycle, _HasCommandersMixin], {
 
@@ -45,8 +39,8 @@ define(['altair/facades/declare', //take a look at terms.md
             // Create a deferred so we can make sure that the board is fully initialized before we start our commander
             this.deferred = new this.Deferred;
 
-            this.board.on("ready", function() {
-                if(this.deferred) {
+            this.board.on("ready", function () {
+                if (this.deferred) {
                     this.deferred.resolve(this);
 
                     // Due to IDE software crashes I have pin 13 strobe an led to ensure it is still connected

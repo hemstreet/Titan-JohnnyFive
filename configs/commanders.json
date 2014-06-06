@@ -1,58 +1,127 @@
 {
     "j5": {
 
-        "path":         "commanders/Commander",
-        "description":  "Johnny five commander",
-        "label":        "Johnny Five",
-        "commands": {
-            "led" : {
-                "label" : "Test Led",
-                "description" : "",
-                "schema" : {
-                    "pin": {
-                         "type" : "integer",
-                         "options" : {
-                            "label" : "Pin",
-                            "default" : 11
-                         }
-                    }
-                }
-            },
-            "pulse": {
-                "label": "Test Pulse",
+        "path":        "commanders/Commander",
+        "description": "Johnny five commander",
+        "label":       "Johnny Five",
+        "commands":    {
+            "digitalReadPin":  {
+                "label":       "Digital Read Pin",
                 "description": "Not Functional",
-                "schema": {
+                "aliases": ["dread"],
+                "schema":      {
                     "pin": {
-                        "type": "integer",
+                        "type":    "integer",
                         "options": {
-                            "label": "Pin",
-                            "default" : 7
+                            "label":   "Pin",
+                            "default": 11
                         }
                     }
                 }
             },
-            "servo" : {
-                "label" : "Test Servo",
-                "description" : "",
-                "schema" : {
-                    "pin" : {
-                        "type" : "integer",
-                        "options" : {
-                            "label" : "Pin",
-                            "default" : 10
+            "digitalWritePin": {
+                "label":       "Digital Write Pin",
+                "aliases": ["dwrite"],
+                "description": "",
+                "schema":      {
+                    "pin": {
+                        "type":    "integer",
+                        "options": {
+                            "label":   "Pin",
+                            "default": 11
                         }
                     }
                 }
             },
-            "motor" : {
-                "label" : "Test Motor",
-                "description" : "Not Functional",
-                "schema" : {
-                    "pin" : {
-                        "type" : "integer",
-                        "options" : {
-                            "label" : "Pin",
-                            "default" : 3
+            "analogWritePin":  {
+                "label":       "Analog Write Pin",
+                "description": "Not Functional",
+                "aliases": ["awrite"],
+                "schema":      {
+                    "pin": {
+                        "type":    "string",
+                        "options": {
+                            "label":   "Pin",
+                            "default": "A0"
+                        }
+                    }
+                }
+            },
+            "analogReadPin":  {
+                "label":       "Analog Read Pin",
+                "description": "Not Functional",
+                "aliases": ["aread"],
+                "schema":      {
+                    "pin": {
+                        "type":    "string",
+                        "options": {
+                            "label":   "Pin",
+                            "default": "A0"
+                        }
+                    }
+                }
+            },
+            "led":      {
+                "label":       "Test Led",
+                "description": "",
+                "schema":      {
+                    "pin": {
+                        "type":    "integer",
+                        "options": {
+                            "label":   "Pin",
+                            "default": 11
+                        }
+                    }
+                }
+            },
+            "pulse":    {
+                "label":       "Test Pulse",
+                "description": "Not Functional",
+                "schema":      {
+                    "pin": {
+                        "type":    "integer",
+                        "options": {
+                            "label":   "Pin",
+                            "default": 7
+                        }
+                    }
+                }
+            },
+            "servo":    {
+                "label":       "Test Servo",
+                "description": "",
+                "schema":      {
+                    "pin": {
+                        "type":    "integer",
+                        "options": {
+                            "label":   "Pin",
+                            "default": 10
+                        }
+                    }
+                }
+            },
+            "motor":    {
+                "label":       "Test Motor",
+                "description": "Not Functional",
+                "schema":      {
+                    "pin": {
+                        "type":    "integer",
+                        "options": {
+                            "label":   "Pin",
+                            "default": 3
+                        }
+                    }
+                }
+            },
+            "motion":   {
+                "label":       "Test IR Motion Sensor",
+                "description": "Not Functional",
+                "schema":      {
+                    "pin": {
+                        "type":    "integer",
+                        "options": {
+                            "label":   "Pin",
+                            "default": 5
                         }
                     }
                 }
