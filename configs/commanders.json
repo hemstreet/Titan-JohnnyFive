@@ -187,5 +187,46 @@
                 }
             }
         }
+    },
+    "j5c" : {
+        "path" : "commanders/Combined",
+        "description" : "Johnny five commander combinations",
+        "label" : "Johnny Five Combined",
+        "commands" : {
+            "joystickLed" : {
+                "label " : "Joystick Led",
+                "description" : "Control the brightness of the led by using the joystick",
+                "schema" : {
+                    "joystickPinX" :{
+                        "type":    "string",
+                        "options": {
+                            "label":   "Joystick X axis pin",
+                            "default": "A0"
+                        }
+                    },
+                    "joystickPinY" : {
+                        "type":    "string",
+                        "options": {
+                            "label":   "Joystick Y axis pin",
+                            "default": "A1"
+                        }
+                    },
+                    "freq" : {
+                        "type":    "integer",
+                        "options": {
+                            "label":   "Joystick Read Frequency",
+                            "default": 500
+                        }
+                    },
+                    "led" : {
+                        "type":    "integer",
+                        "options": {
+                            "label":   "Led Pin",
+                            "default": 11
+                        }
+                    }
+                }
+            }
+        }
     }
 }

@@ -51,7 +51,11 @@ define(['altair/facades/declare',
             options.board = this.parent.board;
             this._led = new five.Led(options);
 
-            this._led.pulse();
+            this._led.on();
+
+            setTimeout(function () {
+                this._led.off();
+            }.bind(this), 2000);
         },
         button:       function (options) {
             options.board = this.parent.board;
@@ -78,12 +82,12 @@ define(['altair/facades/declare',
                 console.log(this.ping.inches, median);
             }.bind(this));
         },
-        irDistance: function(options) {
+        irDistance:   function (options) {
             options.board = this.parent.board;
 
             this.distance = new five.IR.Distance(options);
 
-            this.distance.on("data", function() {
+            this.distance.on("data", function () {
                 if (options.board) {
                     console.log("inches: ", this.inches);
                     console.log("cm: ", this.cm, this.raw);
@@ -92,26 +96,24 @@ define(['altair/facades/declare',
                 }
             });
         },
-        joystick: function(options) {
+        joystick:     function (options) {
             options.board = this.parent.board;
 
+            // Joystick pins are an ledarray of pins
+            // Pin orders:
+            //   [ up, down, left, right ]
+            //   [ ud, lr ]
             this._joystick = new five.Joystick({
-
-                // Joystick pins are an array of pins
-                // Pin orders:
-                //   [ up, down, left, right ]
-                //   [ ud, lr ]
-
                 pins: [options.x, options.y],
                 freq: options.freq
             });
 
-            this._joystick.on("axismove", function(err, timestamp) {
+            this._joystick.on("axismove", function (err, timestamp) {
 
-                console.log( "input", this.axis );
-                console.log( "LR:", this.axis.x, this.normalized.x );
-                console.log( "UD:", this.axis.y, this.normalized.y );
-                console.log( "MAG:", this.magnitude );
+                console.log("input", this.axis);
+                console.log("LR:", this.axis.x, this.normalized.x);
+                console.log("UD:", this.axis.y, this.normalized.y);
+                console.log("MAG:", this.magnitude);
 
             });
         },
@@ -131,7 +133,7 @@ define(['altair/facades/declare',
                 console.log("start", timestamp);
 
                 // Demonstrate motor stop in 2 seconds
-                options.board.wait(3000, function() {
+                options.board.wait(3000, function () {
                     this._motor.stop();
                 }.bind(this));
 
