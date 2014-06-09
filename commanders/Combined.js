@@ -11,38 +11,58 @@ define(['altair/facades/declare',
         joystickLed:     function (options) {
             options.board = this.parent.board;
 
-            this._led = new five.Led(options.led);
+            this.myLed = new five.Led(options.led);
             // Joystick pins are an array of pins
             // Pin orders:
             //   [ up, down, left, right ]
             //   [ ud, lr ]
-            this._joystick = new five.Joystick({
+            this.myJoystick = new five.Joystick({
                 pins: [options.joystickPinX, options.joystickPinY],
                 freq: options.freq
             });
 
-            this._joystick.on("axismove", function (err, timestamp) {
+            this.myJoystick.on("axismove", function (err, timestamp) {
 
-                if(this._led) {
+                if(this.myLed) {
 
                     console.log('has led');
 
-                    if( this._joystick.axis.x > 0.5) {
+                    if( this.myJoystick.axis.x > 0.5) {
 
-                        this._led.off();
+                        this.myLed.off();
                     } else {
 
-                        this._led.on();
+                        this.myLed.on();
                     }
 
                 }
 //
-                console.log("input", this._joystick.axis);
-                console.log("LR:", this._joystick.axis.x, this._joystick.normalized.x);
-                console.log("UD:", this._joystick.axis.y, this._joystick.normalized.y);
-                console.log("MAG:", this._joystick.magnitude);
+                console.log("input", this.myJoystick.axis);
+                console.log("LR:", this.myJoystick.axis.x, this.myJoystick.normalized.x);
+                console.log("UD:", this.myJoystick.axis.y, this.myJoystick.normalized.y);
+                console.log("MAG:", this.myJoystick.magnitude);
 
             }.bind(this));
+        },
+        joystickServo: function(options) {
+            options.board = this.parent.board;
+            this.servoSensor = new five.Servo(options.servoPin);
+
+            this.myJoystick = new five.Joystick({
+                pins: [options.joystickPinX, options.joystickPinY],
+                freq: options.freq
+            });
+
+            this.myJoystick.on("axismove", function (err, timestamp) {
+
+                // @TODO fix this in the future so that it is mapped correctly
+                // now when joystick is pushed left servo angle will get to 0 and make noise
+                var outputValue = this.myJoystick.axis.x * 150;
+
+                this.servoSensor.to(outputValue);
+
+            }.bind(this));
+
         }
     });
 });
