@@ -1,8 +1,9 @@
 {
     "name":         "titan:JohnnyFive",
-    "version":      "0.0.1",
+    "version":      "0.0.2",
     "description":  "Johnny-five implementation into altair",
     "dependencies" : {
-        "johnny-five" : ">=0.0.x"
+        "johnny-five" : ">=0.0.x",
+        "abbrev"      : ">=1.0.x"
     }
 }

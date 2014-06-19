@@ -31,7 +31,7 @@ define(['altair/facades/declare', //take a look at terms.md
             //use the options that were passed in, or the ones we have by default; avoid mutating options
             var _options = options || this.options;
 
-            // Disable repl or this will crash node :(
+//            // Disable repl or this will crash node :(
             this.board = new five.Board({
                 repl: false
             });
