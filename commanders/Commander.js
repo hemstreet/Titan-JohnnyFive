@@ -32,15 +32,15 @@ define(['altair/facades/declare',
 
             options.board.pinMode(options.pin, five.Pin.ANALOG);
 
-            options.board.analogRead(options.pin, function(value) {
+            options.board.analogRead(options.pin, function (value) {
                 console.log(value);
             }.bind(this));
-
 
         },
         analogWrite:  function (options) {
             options.board = this.parent.board;
 
+            // Uses DIGITAL PWM Pins
             options.board.pinMode(options.pin, five.Pin.PWM);
             options.board.analogWrite(options.pin, 255);
 
@@ -72,7 +72,7 @@ define(['altair/facades/declare',
                 console.log("up");
             });
         },
-        pulse:        function (options) {
+        pulseSensor:        function (options) {
 
             options.board = this.parent.board;
             this.ping = new five.Ping(options);

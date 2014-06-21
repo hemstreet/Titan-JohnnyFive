@@ -7,8 +7,8 @@
         "commands":    {
             "digitalRead":  {
                 "label":       "Digital Read Pin",
-                "description": "Not Functional",
-                "aliases":     ["dread"],
+                "description": "",
+                "aliases":     ["dread", "dr"],
                 "schema":      {
                     "pin": {
                         "type":    "integer",
@@ -21,7 +21,7 @@
             },
             "digitalWrite": {
                 "label":       "Digital Write Pin",
-                "aliases":     ["dwrite"],
+                "aliases":     ["dwrite", "dw"],
                 "description": "",
                 "schema":      {
                     "pin": {
@@ -43,7 +43,7 @@
             "analogRead":   {
                 "label":       "Analog Read Pin",
                 "description": "",
-                "aliases":     ["aread"],
+                "aliases":     ["aread", "ar"],
                 "schema":      {
                     "pin": {
                         "type":    "integer",
@@ -56,14 +56,14 @@
             },
             "analogWrite":  {
                 "label":       "Analog Write Pin",
-                "description": "Not Functional",
-                "aliases":     ["awrite"],
+                "aliases":     ["awrite", "aw"],
+                "description": "",
                 "schema":      {
                     "pin": {
                         "type":    "integer",
                         "options": {
                             "label":   "Pin",
-                            "default": 0
+                            "default": 9
                         }
                     }
                 }
@@ -94,7 +94,7 @@
                     }
                 }
             },
-            "pulse":        {
+            "pulseSensor":        {
                 "label":       "Test Pulse",
                 "description": "Not Functional",
                 "schema":      {
