@@ -267,6 +267,47 @@
                         }
                     }
                 }
+            },
+            "panTilt" : {
+                "label " : "Joystick Pan Tilt",
+                "description" : "Control the pan/tilt rig by using the joystick",
+                "schema" : {
+                    "joystickPinX" :{
+                        "type":    "string",
+                        "options": {
+                            "label":   "Joystick X axis pin",
+                            "default": "A0"
+                        }
+                    },
+                    "joystickPinY" : {
+                        "type":    "string",
+                        "options": {
+                            "label":   "Joystick Y axis pin",
+                            "default": "A1"
+                        }
+                    },
+                    "freq" : {
+                        "type":    "integer",
+                        "options": {
+                            "label":   "Joystick Read Frequency",
+                            "default": 500
+                        }
+                    },
+                    "servoPan" : {
+                        "type":    "integer",
+                        "options": {
+                            "label":   "Servo Pan Pin",
+                            "default": 11
+                        }
+                    },
+                    "servoTilt" : {
+                        "type":    "integer",
+                        "options": {
+                            "label":   "Servo Tilt Pin",
+                            "default": 12
+                        }
+                    }
+                }
             }
         }
     }

@@ -57,12 +57,36 @@ define(['altair/facades/declare',
 
                 // @TODO fix this in the future so that it is mapped correctly
                 // now when joystick is pushed left servo angle will get to 0 and make noise
-                var outputValue = this.myJoystick.axis.x * 150;
+                var outputValue = this.myJoystick.axis.x * 180;
 
                 this.servoSensor.to(outputValue);
 
             }.bind(this));
 
+        },
+
+        panTilt: function(options) {
+            options.board = this.parent.board;
+            this.servoSensorPan  = new five.Servo(options.servoPan);
+            this.servoSensorTilt = new five.Servo(options.servoTilt);
+
+            this.myJoystick = new five.Joystick({
+                pins: [options.joystickPinX, options.joystickPinY],
+                freq: options.freq
+            });
+
+            this.myJoystick.on("axismove", function (err, timestamp) {
+
+                // @TODO fix this in the future so that it is mapped correctly
+                // now when joystick is pushed left servo angle will get to 0 and make noise
+                var x = this.myJoystick.axis.x * 180;
+                var y = this.myJoystick.axis.y * 180;
+
+                this.servoSensorPan.to(x);
+                this.servoSensorTilt.to(y);
+
+            }.bind(this));
         }
+
     });
 });
